@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29230.61
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiSamples", "GuiSamples\GuiSamples.csproj", "{7E902C11-DDBB-4184-AE5B-751BE2E02C74}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiSamples.Wpf", "GuiSamples\GuiSamples.Wpf.csproj", "{7E902C11-DDBB-4184-AE5B-751BE2E02C74}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiSamples.Data", "GuiSamples.Data\GuiSamples.Data.csproj", "{DB02A4CA-2230-4EF5-ACB1-F78B348E5FC3}"
 EndProject

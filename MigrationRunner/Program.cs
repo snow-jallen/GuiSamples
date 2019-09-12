@@ -26,21 +26,7 @@ namespace MigrationRunner
             {
                 UpdateDatabase(scope.ServiceProvider);
             }
-
-            testData();
         }
-
-        private static void testData()
-        {
-            var logRepo = new DbLogRepository(ConnectionFactory.Create(SecretKeeper.GetConnectionString()));
-            logRepo.AddLog($"New log as of {DateTime.Now}");
-            logRepo.AddLog($"New log as of {DateTime.Now}");
-
-            foreach(var l in logRepo.GetLogs())
-            {
-                Console.WriteLine($"{l.Id}: {l.Message}");
-            }
-        } 
 
         /// <summary>
         /// Configure the dependency injection services
@@ -62,10 +48,7 @@ namespace MigrationRunner
         /// </summary>
         private static void UpdateDatabase(IServiceProvider serviceProvider)
         {
-            // Instantiate the runner
             var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
-
-            // Execute the migrations
             runner.MigrateUp();
         }
     }
