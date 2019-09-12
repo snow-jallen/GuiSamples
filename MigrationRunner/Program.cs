@@ -1,4 +1,5 @@
 ﻿using FluentMigrator.Runner;
+using GuiSamples.Data;
 using GuiSamples.Data.Migrations;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -9,6 +10,14 @@ namespace MigrationRunner
     {
         static void Main(string[] args)
         {
+            if(args.Length == 2 && args[0] == "--secret" && args[1].StartsWith("server="))
+            {
+                SecretKeeper.SaveConnectionString(args[1]);
+            }
+
+            if (!SecretKeeper.SecretExists())
+                throw new Exception("Unable to proceed without secret.txt");
+
             var serviceProvider = CreateServices();
 
             // Put the database update into a scope to ensure
@@ -25,18 +34,12 @@ namespace MigrationRunner
         private static IServiceProvider CreateServices()
         {
             return new ServiceCollection()
-                // Add common FluentMigrator services
                 .AddFluentMigratorCore()
                 .ConfigureRunner(rb => rb
-                    // Add SQLite support to FluentMigrator
-                    .AddSQLite()
-                    // Set the connection string
-                    .WithGlobalConnectionString("Data Source=test.db")
-                    // Define the assembly containing the migrations
+                    .AddPostgres()
+                    .WithGlobalConnectionString(SecretKeeper.GetConnectionString())
                     .ScanIn(typeof(AddLogTable).Assembly).For.Migrations())
-                // Enable logging to console in the FluentMigrator way
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
-                // Build the service provider
                 .BuildServiceProvider(false);
         }
 
