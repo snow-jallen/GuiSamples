@@ -26,7 +26,21 @@ namespace MigrationRunner
             {
                 UpdateDatabase(scope.ServiceProvider);
             }
+
+            testData();
         }
+
+        private static void testData()
+        {
+            var logRepo = new DbLogRepository(ConnectionFactory.Create(SecretKeeper.GetConnectionString()));
+            logRepo.AddLog($"New log as of {DateTime.Now}");
+            logRepo.AddLog($"New log as of {DateTime.Now}");
+
+            foreach(var l in logRepo.GetLogs())
+            {
+                Console.WriteLine($"{l.Id}: {l.Message}");
+            }
+        } 
 
         /// <summary>
         /// Configure the dependency injection services
@@ -38,7 +52,7 @@ namespace MigrationRunner
                 .ConfigureRunner(rb => rb
                     .AddPostgres()
                     .WithGlobalConnectionString(SecretKeeper.GetConnectionString())
-                    .ScanIn(typeof(AddLogTable).Assembly).For.Migrations())
+                    .ScanIn(typeof(Migration001_AddLogTable).Assembly).For.Migrations())
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
                 .BuildServiceProvider(false);
         }
