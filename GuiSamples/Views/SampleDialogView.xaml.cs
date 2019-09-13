@@ -22,7 +22,5 @@ namespace GuiSamples.Wpf.Views
         {
             InitializeComponent();
         }
-
-        public IDialogResult Result { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

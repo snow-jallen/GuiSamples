@@ -11,5 +11,7 @@
     <StackPanel>
         <TextBlock Text="Hello from the dialog!" />
         <TextBlock Text="{Binding Title}" />
+        <Button Content="Close"
+                Command="{Binding CloseDialogCommand}" />
     </StackPanel>
 </UserControl>

@@ -1,4 +1,5 @@
-﻿using Prism.Mvvm;
+﻿using Prism.Commands;
+using Prism.Mvvm;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,13 @@ namespace GuiSamples.Wpf.ViewModels
     {
         public SampleDialogViewModel()
         {
-
+            CloseDialogCommand = new DelegateCommand(() => RequestClose?.Invoke(new DialogResult()));
         }
 
-        private string title = "Sample Dialog ViewModel";
+        public DelegateCommand CloseDialogCommand { get; }
 
         public event Action<IDialogResult> RequestClose;
+        private string title = "Sample Dialog ViewModel";
 
         public string Title
         {
