@@ -84,6 +84,10 @@
                 <TextBox Text="{Binding LoanAmount, ValidatesOnDataErrors=True, StringFormat=c}"
                          Grid.Row="1"
                          Grid.Column="1" />
+                <TextBlock Text="{Binding LoanAmountError}"
+                           Grid.Column="2"
+                           Grid.Row="1"
+                           Visibility="{Binding LoanAmountErrorVisibility}" />
 
                 <TextBlock Text="Term (years)"
                            Grid.Row="2" />
