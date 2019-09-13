@@ -1,18 +1,14 @@
-﻿<Window x:Class="GuiSamples.Views.MainWindow"
+﻿<Window x:Class="GuiSamples.Wpf.Views.SampleDialogView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GuiSamples"
+        xmlns:local="clr-namespace:GuiSamples.Wpf.Views"
         mc:Ignorable="d"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}"
-        xmlns:views="clr-namespace:GuiSamples.Wpf.Views"
-        Height="450"
-        Width="800">
-    <StackPanel>
-        <views:ValidatingFormView />
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
-    </StackPanel>
+        Title="{Binding Title}" Height="450" Width="800">
+    <Grid>
+        <TextBlock Text="Hello from the dialog!" />
+    </Grid>
 </Window>

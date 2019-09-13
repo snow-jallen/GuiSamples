@@ -1,4 +1,10 @@
-﻿using System;
+﻿using CommonServiceLocator;
+using GuiSamples.Views;
+using GuiSamples.Wpf.ViewModels;
+using GuiSamples.Wpf.Views;
+using Prism.Ioc;
+using Prism.Unity;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -11,7 +17,28 @@ namespace GuiSamples
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App : PrismApplication
     {
+        protected override Window CreateShell()
+        {
+            return ServiceLocator.Current.GetInstance<MainWindow>();
+        }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterForNavigation<MessagingView>();
+            containerRegistry.RegisterForNavigation<ValidatingFormView>();
+            containerRegistry.RegisterDialogWindow<SampleDialogView>();
+        }
+
+        protected override void ConfigureServiceLocator()
+        {
+            base.ConfigureServiceLocator();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+        }
     }
 }
