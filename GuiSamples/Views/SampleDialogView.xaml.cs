@@ -16,7 +16,7 @@ namespace GuiSamples.Wpf.Views
     /// <summary>
     /// Interaction logic for SampleDialogView.xaml
     /// </summary>
-    public partial class SampleDialogView : Window, IDialogWindow
+    public partial class SampleDialogView : UserControl
     {
         public SampleDialogView()
         {

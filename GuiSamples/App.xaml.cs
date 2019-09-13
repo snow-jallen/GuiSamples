@@ -28,7 +28,7 @@ namespace GuiSamples
         {
             containerRegistry.RegisterForNavigation<MessagingView>();
             containerRegistry.RegisterForNavigation<ValidatingFormView>();
-            containerRegistry.RegisterDialogWindow<SampleDialogView>();
+            containerRegistry.RegisterDialog<SampleDialogView, SampleDialogViewModel>(nameof(SampleDialogViewModel));
         }
 
         protected override void ConfigureServiceLocator()
