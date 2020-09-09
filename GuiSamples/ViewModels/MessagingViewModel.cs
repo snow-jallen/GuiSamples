@@ -17,7 +17,9 @@ namespace GuiSamples.Wpf.ViewModels
             this.regionManager = regionManager;
             this.dialogService = dialogService;
             this.eventAggregator = eventAggregator;
-            ShowDialog = new DelegateCommand(() => dialogService.ShowDialog(nameof(SampleDialogViewModel), null, null));
+            var dialogParameters = new DialogParameters();
+            dialogParameters.Add("key", Title);
+            ShowDialog = new DelegateCommand(() => dialogService.ShowDialog(nameof(SampleDialogViewModel), dialogParameters, null));
 
             eventAggregator.GetEvent<UserMessageEvent>().Subscribe((msg) => ValueFromForm = msg);
         }

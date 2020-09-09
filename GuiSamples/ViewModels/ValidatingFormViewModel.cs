@@ -25,7 +25,7 @@ namespace GuiSamples.Wpf.ViewModels
             LoanAmount = 100000;
             TermInYears = 100;
         }
-        private string title = "Validing Form ViewModel";
+        private string title = "Validating Form ViewModel";
         public string Title
         {
             get { return title; }
@@ -83,7 +83,7 @@ namespace GuiSamples.Wpf.ViewModels
                 calculatePayment();
             }
         }
-        
+
         private int termInYears;
         public int TermInYears
         {
