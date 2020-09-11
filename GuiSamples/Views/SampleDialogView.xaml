@@ -11,6 +11,11 @@
     <StackPanel>
         <TextBlock Text="Hello from the dialog!" />
         <TextBlock Text="{Binding Title}" />
+        <Button Content="Dump your Clipboard"
+                Command="{Binding DumpClipboard}" />
+        <TextBox Text="{Binding ClipboardText}" />
+        <Button Content="Copy to Clipboard"
+                Command="{Binding CopyToClipboard}" />
         <Button Content="Close"
                 Command="{Binding CloseDialogCommand}" />
     </StackPanel>
