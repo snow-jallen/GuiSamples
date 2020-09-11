@@ -12,7 +12,17 @@
         Height="450"
         Width="800">
     <StackPanel>
-        <views:ValidatingFormView />
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+        <Border BorderBrush="Gray"
+                BorderThickness="2"
+                Padding="3"
+                Margin="5">
+            <views:ValidatingFormView />
+        </Border>
+        <Border BorderBrush="Blue"
+                Padding="3"
+                BorderThickness="2"
+                Margin="5">
+            <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+        </Border>
     </StackPanel>
 </Window>

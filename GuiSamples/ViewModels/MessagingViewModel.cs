@@ -6,6 +6,7 @@ using Prism.Regions;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace GuiSamples.Wpf.ViewModels
@@ -21,7 +22,12 @@ namespace GuiSamples.Wpf.ViewModels
             dialogParameters.Add("key", Title);
             ShowDialog = new DelegateCommand(() => dialogService.ShowDialog(nameof(SampleDialogViewModel), dialogParameters, null));
 
-            eventAggregator.GetEvent<UserMessageEvent>().Subscribe((msg) => ValueFromForm = msg);
+            MessagesReceived = new ObservableCollection<string>();
+            eventAggregator.GetEvent<UserMessageEvent>().Subscribe((msg) =>
+            {
+                ValueFromForm = msg;
+                MessagesReceived.Add(msg);
+            });
         }
 
         private string title = "Messaging ViewModel";
@@ -36,6 +42,8 @@ namespace GuiSamples.Wpf.ViewModels
         }
 
         public DelegateCommand ShowDialog { get; }
+
+        public ObservableCollection<string> MessagesReceived { get; private set; }
 
         private string valueFromForm;
         public string ValueFromForm

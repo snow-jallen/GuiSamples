@@ -51,7 +51,7 @@
     <StackPanel>
         <TextBlock Text="{Binding Title}"
                    Background="Orange" />
-        <TextBox Text="{Binding UserValue,UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Text="{Binding UserValue,UpdateSourceTrigger=LostFocus}" />
         <Button Content="Go to Messaging"
                 Command="{Binding NavigateToMessaging}"
                 CommandParameter="MessagingView" />
@@ -73,7 +73,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="Interest Rate" />
-                <TextBox Text="{Binding InterestRate, ValidatesOnDataErrors=True, StringFormat=n3}"
+                <TextBox Text="{Binding InterestRate, ValidatesOnDataErrors=True, StringFormat=p3}"
                          Grid.Column="1" />
                 <TextBlock Text="{Binding InterestRateError}"
                            Grid.Column="2"

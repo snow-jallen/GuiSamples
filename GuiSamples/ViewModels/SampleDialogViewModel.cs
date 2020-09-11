@@ -16,6 +16,12 @@ namespace GuiSamples.Wpf.ViewModels
 
         public DelegateCommand CloseDialogCommand { get; }
 
+        private DelegateCommand doTheThing;
+        public DelegateCommand DoTheThing => doTheThing ?? (doTheThing = new DelegateCommand(() => Title = "I did it at " + DateTime.Now.ToString()));
+
+        private DelegateCommand doAnotherThing = new DelegateCommand(() => { });
+        public DelegateCommand DoAnotherThing => doAnotherThing;
+
         public event Action<IDialogResult> RequestClose;
         private string title = "Sample Dialog ViewModel";
 
