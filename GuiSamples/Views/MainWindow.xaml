@@ -16,6 +16,16 @@
                 BorderThickness="2"
                 Padding="3"
                 Margin="5">
+            <StackPanel>
+                <Button Content="Launch Clipboard Manager"
+                        Command="{Binding LaunchClipboardManager}" />
+                <ListBox ItemsSource="{Binding ClipboardItems}" />
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="Gray"
+                BorderThickness="2"
+                Padding="3"
+                Margin="5">
             <views:ValidatingFormView />
         </Border>
         <Border BorderBrush="Blue"

@@ -1,5 +1,6 @@
 ﻿using CommonServiceLocator;
 using GuiSamples.Views;
+using GuiSamples.Wpf;
 using GuiSamples.Wpf.ViewModels;
 using GuiSamples.Wpf.Views;
 using Prism.Ioc;
@@ -29,6 +30,9 @@ namespace GuiSamples
             containerRegistry.RegisterForNavigation<MessagingView>();
             containerRegistry.RegisterForNavigation<ValidatingFormView>();
             containerRegistry.RegisterDialog<SampleDialogView, SampleDialogViewModel>(nameof(SampleDialogViewModel));
+            containerRegistry.RegisterDialog<ClipboardManagerView, ClipboardManagerViewModel>(nameof(ClipboardManagerViewModel));
+
+            containerRegistry.Register<IClipboardService, ClipboardService>();
         }
 
         protected override void ConfigureServiceLocator()

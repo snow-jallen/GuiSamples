@@ -22,6 +22,7 @@ namespace GuiSamples.Wpf.ViewModels
             dialogParameters.Add("key", Title);
             ShowDialog = new DelegateCommand(() => dialogService.ShowDialog(nameof(SampleDialogViewModel), dialogParameters, (result)=>
             {
+
             }));
 
             MessagesReceived = new ObservableCollection<string>();
