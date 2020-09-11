@@ -4,6 +4,7 @@ using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 
 namespace GuiSamples.Wpf.ViewModels
 {
@@ -11,7 +12,13 @@ namespace GuiSamples.Wpf.ViewModels
     {
         public SampleDialogViewModel()
         {
-            CloseDialogCommand = new DelegateCommand(() => RequestClose?.Invoke(new DialogResult()));
+            CloseDialogCommand = new DelegateCommand(() =>
+            {
+                var closeParameters = new DialogParameters();
+                closeParameters.Add("userEntry1", "blah");
+                var result = new DialogResult(ButtonResult.OK, closeParameters);
+                RequestClose?.Invoke(result);
+            });
         }
 
         public DelegateCommand CloseDialogCommand { get; }
@@ -34,5 +41,24 @@ namespace GuiSamples.Wpf.ViewModels
         public void OnDialogOpened(IDialogParameters parameters)
         {
         }
+
+        private string clipboardText;
+        public string ClipboardText
+        {
+            get => clipboardText;
+            set { SetProperty(ref clipboardText, value); }
+        }
+
+        private DelegateCommand dumpClipboard;
+        public DelegateCommand DumpClipboard => dumpClipboard ??= new DelegateCommand(() =>
+        {
+            ClipboardText = Clipboard.GetText();
+        });
+
+        private DelegateCommand copyToClipboard;
+        public DelegateCommand CopyToClipboard => copyToClipboard ??= new DelegateCommand(() =>
+        {
+            Clipboard.SetText(ClipboardText);
+        });
     }
 }
